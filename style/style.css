@@ -1,0 +1,39 @@
+.custom-navbar {
+    background: #ffffff;
+    border-top: 5px solid #ff7b00;
+    border-bottom: 0;
+    -webkit-box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
+    padding: 12px 0;
+    margin-bottom: 0;
+    padding: 0;
+  }
+  .custom-navbar .navbar-nav.navbar-nav-first {
+    margin-left: 8em;
+  }.
+  .custom-navbar .navbar-nav.navbar-right li a {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+  .custom-navbar .navbar-nav.navbar-right li a .fa {
+    background: #51c5fc;
+    border-radius: 100%;
+    color: #ffffff;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    display: inline-block;
+    margin-right: 5px;
+  }
+  .custom-navbar .nav li a {
+    line-height: 40px;
+    color: #575757;
+    padding-right: 22px;
+    padding-left: 22px;
+  }
+  .custom-navbar .nav li a:hover {
+    background-color: #ef7d36;
+    color: #ffffff;
+  }
