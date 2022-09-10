@@ -19,13 +19,19 @@
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
+
+     <!-- <style>
+        .page-container{
+            background-color:beige;
+        }
+    </style>  -->
 </head>
 <body>
     <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky bg-success">
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12" class="col-sm-6">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="index.html" class="logo">
@@ -57,29 +63,45 @@
         </div>
     </div>
 </header>
+<center> 
 <!-- ***** Header Area End ***** -->
-<div class="container">
-  <center><br><br><br><br><br><br>
+<div class="page-container" class="col-6" class="col-sm-12">
+   
+    <br><br><br><br><br><br>
   <h1> Reset Password </h1>
   <br>
   <form class="from-group">
-      <label for="username">User Name:
-          <input type="text" required>
-      </label><br><br>
-      <label for="otp">Enter OTP:
-          <input type="text" required>
-      </label><br><br>
-      <label for="New_Password">New Password:
-          <input type="password" name="" id=""required>
-      </label><br><br>
-      <label for="confirm">Re-Enter Password :
-          <input type="password" name="" id=""required>
-      </label><br><br>
+    <div class="col-6">
+      <label for="username" class="form-label">User Name:
+          <input type="text" class="form-control"required>
+      </label>
+    </div>
+      <!-- <br><br> -->
+      <div class="col-6">
+      <label for="otp" class="form-label">Enter OTP:
+          <input type="text" class="form-control"required>
+      </label>
+    </div>
+      <!-- <br><br> -->
+      <div class="col-6">
+      <label for="New_Password" class="form-lable">New Password:
+          <input type="password" class="form-control"name="" id=""required>
+      </label>
+    </div>
+    <div class="col-6">
+      <!-- <br><br> -->
+      <label for="confirm" class="form-label">Re-Enter Password :
+          <input type="password" class="form-control"name="" id=""required>
+      </label>
+    </div>
+      <!-- <br><br> -->
       <!-- <label for="usertype">Gender:<br> -->
           <!-- <input type="radio" name="gender" id="">Male<br>
           <input type="radio" name="gender" id="">Female
       </label><br><br>     -->
-      <input type="submit" value="Submit">
+      <div class="col-6">
+      <input type="submit" value="Submit" class="btn btn-success">
+    </div>
       <!-- <input type="reset" value="Reset"> -->
   </form>
   </center>
