@@ -40,12 +40,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         echo("user name exists");
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
   <head>
- 
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -64,25 +63,24 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
-   
+
   </head>
- 
-    
 
 <body>
 
 
-  <!-- ***** Header Area Start ***** 
+  <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky bg-success">
       <div class="container">
           <div class="row">
-              <div class="col-12">
+            <div class="col-12" class="col-sm-6">
                   <nav class="main-nav">
-                      <!-- ***** Logo Start ***** -
+                      <!-- ***** Logo Start ***** -->
                       <a href="index.html" class="logo">
                           <img src="assets/images/logo.png" alt="">
                       </a>
-                      
+                      <!-- ***** Logo End ***** -->
+                      <!-- ***** Menu Start ***** -->
                       <ul class="nav">
                           <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
                           <li class="scroll-to-section"><a href="#services">Services</a></li>
@@ -101,40 +99,60 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                       <a class='menu-trigger'>
                           <span>Menu</span>
                       </a>
-                      <!-- ***** Menu End ***** 
+                      <!-- ***** Menu End ***** -->
                   </nav>
               </div>
           </div>
       </div>
   </header>
   <!-- ***** Header Area End ***** -->
-  <div class="container">
-    <center><br><br><br><br><br><br>
+  <center>
+  <div class="page-container" class="col-6" class="col-sm-12">
+    <!-- <div class="col-6" class="col-sm-12"> -->
+        
+        <br><br><br><br><br><br> 
     <h1> Registration Form </h1>
     <br>
     <form class="from-group"  method="post" action="#">
-        <label for="username">User Name:
-            <input type="text" required name="username" id="un" required>
-        </label><br><br>
-        <label for="email">Email:
-            <input type="email" name="email" id="mail" required>
-        </label><br><br>
-        <label for="password">Password:
-            <input type="password" name="password" id="pw" required>
-        </label><br><br>
-        <label for="reppass">Repeat Password:
-            <input type="password" name="reppass" id="rpw" required>
-        </label><br><br>
-        <label for="gender" required>Gender:<br>
+        <div class="col-6">
+        <label for="username" class="form-label">User Name:
+            <input type="text" class="form-control"  name="username" id="un" required>
+        </div>
+        <div class="col-6">
+            <label for="email" class="form-label">Email:
+                <input type="email" class="form-control" name="email" id="mail" required>
+            </label>
+        </div>
+        </label>
+        <!-- <br><br> -->
+        <div class="col-6">
+        <label for="password" class="form-label">Password:
+            <input type="password" class="form-control"  name="password" id="pw" required>
+        </label>
+        <!-- <br><br> -->
+    </div>
+    <div class="col-6">
+         <label for="reppass" class="form-label">Repeat Password:
+            <input type="password"class="form-control" name="reppass" id="rpw" required>
+        </label>
+    </div>
+        <!-- <br><br> -->
+   
+        <!-- <br><br> -->
+        <div class="col-6">
+        <label for="gender" class="form-label">Gender:<br>
             <input type="radio" name="gender" id="bg" value="bg">Male<br>
             <input type="radio" name="gender" id="b" value="b">Female
-        </label><br><br>   
-        <span id="error_msg"></span> 
-        <input type="submit" value="Submit" >
-        <input type="reset" value="Reset">
-    </form>
-    </center>
+        </label>
     </div>
-    </body>
-    </html>
-    
+        <!-- <br><br>     -->
+        <span id="error_msg"></span> 
+        <input type="reset" value="Reset" class="btn btn-danger"> 
+        <input type="submit" class="btn btn-success"value="Submit">
+       
+    </form>
+    </center> 
+    </div>
+</div>
+</body>
+</html>
