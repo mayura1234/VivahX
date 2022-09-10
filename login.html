@@ -25,7 +25,7 @@
   <header class="header-area header-sticky bg-success">
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12" class="col-sm-6">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="index.html" class="logo">
@@ -63,12 +63,18 @@
   <h1> Login Form </h1>
   <br>
   <form class="from-group">
-      <label for="username">User Name:
-          <input type="text" required>
-      </label><br><br>
-      <label for="password">Password:
-          <input type="password" required>
-      </label><br><br>
+    <div class="col-6" class="col-sm-12">
+      <label for="username" class="form-label">User Name:
+          <input type="text" class="form-control"required>
+      </label>
+      <!-- <br><br> -->
+    </div>
+    <div class="col-6">
+      <label for="password" class="form-label">Password:
+          <input type="password" class="form-control"required>
+      </label>
+    </div>
+      <!-- <br><br> -->
        <!-- <label for="reppass">Repeat Password:
           <input type="password" name="" id=""required>
       </label><br><br>
@@ -79,8 +85,11 @@
           <input type="radio" name="gender" id="">Male<br>
           <input type="radio" name="gender" id="">Female
       </label><br><br>     -->
-      <input type="submit" value="Submit">
-      <input type="reset" value="Reset"> 
+      <div class="col-6">
+        <input type="reset" value="Reset" class="btn btn-danger"> 
+      <input type="submit" value="Submit" class="btn btn-success">
+     
+    </div>
   </form>
   </center>
   </div>
