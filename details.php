@@ -20,7 +20,31 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         $runquery2=$con->query($query2);
         if(mysqli_num_rows($runquery2) == 0){
             if(true){       //jataka
-
+                $fname=$_POST['fname'];
+                $mname=$_POST['mname'];
+                $lname=$_POST['lname'];
+                $aphone=$_POST['aphone'];
+                $amail=$_POST['amail'];
+                $addr=$_POST['address'];
+                $height=$_POST['height'];
+                $weight=$_POST['weight'];
+                $comp=$_POST['campxn'];
+                $nakshatra=$_POST['nakshatra'];
+                $paada=$_POST['paada'];
+                $gotra=$_POST['gotra'];
+                $dob=$_POST['date'];
+                $graduation=$_POST['grad'];
+                $profsn=$_POST['prof'];
+                $salary=$_POST['earn'];
+                $fname=$_POST['pa'];
+                $mname=$_POST['ma'];
+                $paoccu=$_POST['paoccu'];
+                $maoccu=$_POST['maoccu'];
+                $bro=$_POST['brono'];
+                $sis=$_POST['sisno'];
+                $about=$_POST['about'];
+                $requirement=$_POST['req'];
+                
             }
         }else
             echo("Phone number already registered.."); 
@@ -165,9 +189,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                         <textarea name="address" id="address" cols="40" rows="3"></textarea>
                     </label>
                 </div> <br>
-                <div class="col-12">
-                    <input type="button" value="ADD" onclick="">
-                </div><br>
             </div>
             <br>
             <div class="form-control disp">
