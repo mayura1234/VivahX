@@ -1,4 +1,34 @@
 <?php
+session_start();
+
+include("connection.php");
+include("functions.php");
+
+if($_SERVER['REQUEST_METHOD'] == "POST")
+{
+    $user_name="kes";
+    $phone=99999;
+    $email="hey@1";
+    $query1 = "SELECT rec_id FROM user WHERE uname='$user_name'";
+    $runquery1=$con->query($query1);
+   // echo $runquery;
+    if(mysqli_num_rows($runquery1) != 0){
+        $row1=mysqli_fetch_assoc($runquery1);
+        echo($row1["rec_id"]);
+
+        $query2 = "SELECT phone FROM details where phone='$phone'";
+        $runquery2=$con->query($query2);
+        if(mysqli_num_rows($runquery2) == 0){
+            if(true){       //jataka
+
+            }
+        }else
+            echo("Phone number already registered.."); 
+
+    }else{echo("No rows?");}
+
+}
+
 
 ?>
 
@@ -41,7 +71,7 @@
                   <nav class="main-nav">
                       <!-- ***** Logo Start ***** -->
                       <a href="index.html" class="logo">
-                          <img src="assets/images/logo.png" alt="">
+                         <!-- <img src="assets/images/logo.png" alt="">
                       </a>
                       <!-- ***** Logo End ***** -->
                       <!-- ***** Menu Start ***** -->
@@ -140,7 +170,7 @@
                 </div><br>
             </div>
             <br>
-            <div class="form-control disp" hidden>
+            <div class="form-control disp">
                 <br>
                 <h5>PHYSIX</h5>
                 <br>
@@ -176,7 +206,7 @@
                 </div>  <br>
             </div>
             <br>
-            <div class="form-control disp" hidden>
+            <div class="form-control disp">
                 <br>
                 <h5>Advanced Basics</h5>
                 <br>
@@ -196,7 +226,7 @@
                     <input type="date" name="date" id="date">
                 </label><br><br>
             </div><br>
-            <div class="form-control disp" hidden>
+            <div class="form-control disp">
                 <br>
                 <h5>Professional Details</h5><br>
                 <label for="grad">Top Graduation:
@@ -209,7 +239,7 @@
                     <input type="text" name="earn" id="earn">
                 </label><br><br>
             </div><br>
-            <div class="form-control disp" hidden>
+            <div class="form-control disp">
                 <br><h5>Family Details:</h5><br>
                 <label for="pa">Father Name:
                     <input type="text" name="pa" id="pa">
@@ -230,7 +260,7 @@
                     <input type="number" name="sisno" id="sisno" min="0">
                 </label><br><br>
             </div><br>
-            <div class="form-control disp" hidden>
+            <div class="form-control disp">
                 <br>
                 <h5>Other Details</h5><br>
                 <label for="about">Some words about yourself:
@@ -240,6 +270,27 @@
                 <label for="req">Partner Requirements: <br>
                     <textarea name="req" id="req" cols="30" rows="4"></textarea>
                 </label><br><br>
+
+            </div>
+            <br>
+            <div class="form-control disp">
+                <br>
+                <h5>Verification</h5>
+                <br>
+                <div class="col-12">
+                    <label for="aadhar">Upload Aadhar Card:
+                        <input type="file" name="aadhar" id="aadhar" required>
+                    </label>
+                </div><br>
+            </div><br>
+            <div class="form-control disp">
+                <br>
+                <div class="col-12">
+                    <h4>ACKNOLEDGEMENT</h4>
+                </div><br>
+                <div class="col-12">
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                </div><br>
             </div>
             </div>
             </center>
