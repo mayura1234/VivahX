@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,12 +86,18 @@
   </div><br>
   <div class="container"><center>
         <form class="form-control form-group" action="" method="post">
-            <div class="form-control"><br>
+            <div class="form-control disp"><br>
                 <h5>Basic Information</h5>
                 <br>
                 <div class="col-12 col-md-12 ">
                     <label for="fname">First Name:
                         <input type="text" name="fname" id="fname" required>
+                    </label>
+                </div>
+                <br>
+                <div class="col-12 col-md-12">
+                    <label for="mname">Middle Name:
+                        <input type="text" name="mname" id="mname">
                     </label>
                 </div>
                 <br>
@@ -125,9 +135,12 @@
                         <textarea name="address" id="address" cols="40" rows="3"></textarea>
                     </label>
                 </div> <br>
+                <div class="col-12">
+                    <input type="button" value="ADD" onclick="">
+                </div><br>
             </div>
             <br>
-            <div class="form-control">
+            <div class="form-control disp" hidden>
                 <br>
                 <h5>PHYSIX</h5>
                 <br>
@@ -163,7 +176,7 @@
                 </div>  <br>
             </div>
             <br>
-            <div class="form-control">
+            <div class="form-control disp" hidden>
                 <br>
                 <h5>Advanced Basics</h5>
                 <br>
@@ -182,10 +195,63 @@
                 <label for="dob">Birth Date:
                     <input type="date" name="date" id="date">
                 </label><br><br>
+            </div><br>
+            <div class="form-control disp" hidden>
+                <br>
+                <h5>Professional Details</h5><br>
+                <label for="grad">Top Graduation:
+                    <input type="text" name="grad" id="grad">
+                </label><br><br>
+                <label for="prof">Primary Profesison:
+                    <input type="text" name="prof" id="prof">
+                </label><br><br>
+                <label for="earn">Yearly Earnings:
+                    <input type="text" name="earn" id="earn">
+                </label><br><br>
+            </div><br>
+            <div class="form-control disp" hidden>
+                <br><h5>Family Details:</h5><br>
+                <label for="pa">Father Name:
+                    <input type="text" name="pa" id="pa">
+                </label><br><br>
+                <label for="paoccu">Father Occupation:
+                    <input type="text" name="paoccu" id="paoccu">
+                </label><br><br>
+                <label for="ma">Mother Name:
+                    <input type="text" name="ma" id="ma">
+                </label><br><br>
+                <label for="maoccu">Mother Occupation:
+                    <input type="text" name="maoccu" id="maoccu">
+                </label><br><br>
+                <label for="brono">Number of Brothers:
+                    <input type="number" name="brono" id="brono" min="0">
+                </label><br><br>
+                <label for="sisno">Number of Sisters:
+                    <input type="number" name="sisno" id="sisno" min="0">
+                </label><br><br>
+            </div><br>
+            <div class="form-control disp" hidden>
+                <br>
+                <h5>Other Details</h5><br>
+                <label for="about">Some words about yourself:
+                    <br>
+                    <textarea name="about" id="about" cols="30" rows="4"></textarea>
+                </label><br><br>
+                <label for="req">Partner Requirements: <br>
+                    <textarea name="req" id="req" cols="30" rows="4"></textarea>
+                </label><br><br>
             </div>
             </div>
             </center>
         </form>
     </div>
+    <style>
+        .disp{
+            background-color: aliceblue;
+        }
+    </style>
+    <script>
+        
+    </script>
 </body>
 </html>
