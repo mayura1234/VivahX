@@ -4,9 +4,12 @@ session_start();
 include("connection.php");
 include("functions.php");
 
+$query1 = "SELECT face_photo FROM details WHERE rec_id='$user_name'";
+    $runquery1=$con->query($query1);
+
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
-    $user_name="kes";
+    $user_name='kes2';
     $phone=99999;
     $email="hey@1";
     $query1 = "SELECT rec_id FROM user WHERE uname='$user_name'";
@@ -14,12 +17,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
    // echo $runquery;
     if(mysqli_num_rows($runquery1) != 0){
         $row1=mysqli_fetch_assoc($runquery1);
-        echo($row1["rec_id"]);
-
+        $rec_id=$row1["rec_id"];
         $query2 = "SELECT phone FROM details where phone='$phone'";
         $runquery2=$con->query($query2);
         if(mysqli_num_rows($runquery2) == 0){
             if(true){       //jataka
+                $recid= random_num(4);
                 $fname=$_POST['fname'];
                 $mname=$_POST['mname'];
                 $lname=$_POST['lname'];
@@ -44,8 +47,26 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                 $sis=$_POST['sisno'];
                 $about=$_POST['about'];
                 $requirement=$_POST['req'];
-                
+                $data1 = file_get_contents($_FILES['fphoto']['doc1']);
+                $data2 = file_get_contents($_FILES['bphoto']['doc2']);
+                $jataka_doc = file_get_contents($_FILES['jataka_doc']['doc2']);
+                $aadhar = file_get_contents($_FILES['aadhar']['aadhar']);
+                $stmt4 = "INSERT INTO details(`rec_id`, `fname`, `minit`, `lname`,`aphone`, `aemail`, `address`, `height`, `weight`, `complexion`, `face_photo`, `body_photo`, `about`, `profession`, `earnings`, `requirement`, `aadhar`,`qualification`) VALUES ('$recid','$fname','$mname','$lname','$aphone','$amail','$addr','$height','$weight','$comp','$data1','$data2','$about','$profsn','$requirement','$aadhar','$graduation')";
+                        if($con->query($stmt4)===TRUE){
+                            echo("INSERTED to details");
+                            $jtk_id= random_num(4);
+                            $query4="INSERT INTO `jaataka`(`jtk_id`, `gotra`, `DOB`, `paada`, `nakshatra`, `user_id`, `document`) VALUES ('$jtk_id','$gotra','$dob','$paada','$nakshatra','$user_id','$jataka_doc')";
+                            if($con->query($query4)===TRUE){
+                                echo("INSERTED to jataka");
+                                $fam_id= random_num(4);
+                                $query5="INSERT INTO `family`(`family_id`, `father`, `mother`, `fa_occu`, `mo_occu`, `bro_no`, `sis_no`) VALUES ('$fam_id','$fname','$mname ','$paoccu','$maoccu','$bro','$sis')";
+                                if($con->query($query5)===TRUE){
+                                    echo("INSERTED to family");
+                        }else
+                            echo("Some error");
             }
+        }
+    }
         }else
             echo("Phone number already registered.."); 
 
@@ -232,7 +253,35 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                 <h5>Advanced Basics</h5>
                 <br>
                 <label for="nakshatra">Nakshatra:
-                    <input type="text" name="nakshatra" id="nakshatra">
+                    <select name="nakshatra" id="star">
+                        <option value="ashwini">Ashwini</option>
+                        <option value="bharani">Bharani</option>
+                        <option value="krittika">Krittika</option>
+                        <option value="rohini">Rohini</option>
+                        <option value="mrigashirsha">Mrigashirsha</option>
+                        <option value="ardra">Ardra</option>
+                        <option value="punarvasu">Punarvasu</option>
+                        <option value="pushya">Pushya</option>
+                        <option value="ashlesha">Ashlesha</option>
+                        <option value="magha">Magha</option>
+                        <option value="purvaphalguni">Purva Phalguni</option>
+                        <option value="uttaraphalguni">Uttara Phalguni</option>
+                        <option value="hasta">Hasta</option>
+                        <option value="chitra">Chitra</option>
+                        <option value="svati">Svati</option>
+                        <option value="Vishakha">Vishakha</option>
+                        <option value="Anuradha">Anuradha</option>
+                        <option value="Jyeshtha">Jyeshtha</option>
+                        <option value="mula">Mula</option>
+                        <option value="purvaashadha">Purva Ashadha</option>
+                        <option value="uttaraashadha">Uttara Ashadha</option>
+                        <option value="shravana">Shravana</option>
+                        <option value="dhanishta">Dhanishta</option>
+                        <option value="shatabhisha">Shatabhisha</option>
+                        <option value="purvabhadrapada">Purva Bhadrapada</option>
+                        <option value="uttarabhadrapada">Uttara Bhadrapada</option>
+                        <option value="revati">Revati</option>                        
+                    </select>
                 </label>
                 <br><br>
                 <label for="paada">Paada:&nbsp;
@@ -245,6 +294,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                 <br><br>
                 <label for="dob">Birth Date:
                     <input type="date" name="date" id="date">
+                </label><br><br>
+                <label for="jataka_doc">
+                    <input type="file" name="jataka_doc" id="jataka_doc">
                 </label><br><br>
             </div><br>
             <div class="form-control disp">
