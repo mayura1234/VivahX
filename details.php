@@ -3,17 +3,18 @@ session_start();
 
 include("connection.php");
 include("functions.php");
-
+/*
 $query1 = "SELECT face_photo FROM details WHERE rec_id='$user_name'";
     $runquery1=$con->query($query1);
-
+*/
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
     $user_name='kes2';
-    $phone=99999;
+    $phone=55666;
     $email="hey@1";
     $query1 = "SELECT rec_id FROM user WHERE uname='$user_name'";
     $runquery1=$con->query($query1);
+    
    // echo $runquery;
     if(mysqli_num_rows($runquery1) != 0){
         $row1=mysqli_fetch_assoc($runquery1);
@@ -31,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                 $addr=$_POST['address'];
                 $height=$_POST['height'];
                 $weight=$_POST['weight'];
-                $comp=$_POST['campxn'];
+                $comp=$_POST['compxn'];
                 $nakshatra=$_POST['nakshatra'];
                 $paada=$_POST['paada'];
                 $gotra=$_POST['gotra'];
