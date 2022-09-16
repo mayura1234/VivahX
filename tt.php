@@ -9,16 +9,32 @@
     if($_SERVER['REQUEST_METHOD'] == "POST")
     {
         include("connection.php");
-        include("functions.php");
-        if(isset($_POST['myfile'])){ echo($_POST['myfile']);
-        move_uploaded_file($_FILES['myfile']['tmp_name'], "userupolads/document" . $_FILES['myfile']['name']);
+        if ($_FILES['myfile']['size'] > 0){
+            
+            $target_dir = "userupolads/document/";
+            $file_name = $_FILES['myfile']['name'];
+    
+    
+            $file_tmp = $_FILES['myfile']['tmp_name'];
+    
+            if (move_uploaded_file($file_tmp, $target_dir.$file_name)) {
+                echo "<h1>File Upload Success</h1>";
+                $sql="INSERT INTO `details`(`rec_id`, `face_photo`) VALUES ('888','$file_name')";
+                if($con->query($sql)===TRUE){
+                    echo("INSERTED to details");
+                }else echo("Fail Again!");
+            }
+            else {
+                echo "<h1>File Upload not successfull</h1>";
+            }
+   /*     move_uploaded_file($_FILES['myfile']['tmp_name'], "userupolads/document" . $_FILES['myfile']['name']);
         $file=$_FILES["myfile"]["name"];
         
        // $data1 = file_get_contents($_FILES['myfile']['tmp_name']);
         $sql="INSERT INTO `details`(`rec_id`, `face_photo`) VALUES ('888','$file')";
         if($con->query($sql)===TRUE){
             echo("INSERTED to details");
-        }else echo("Fail Again!");
+        }else echo("Fail Again!");*/
     }else echo("Truely not recognised");
     }
     ?>
