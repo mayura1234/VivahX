@@ -10,14 +10,21 @@
     {
         include("connection.php");
         include("functions.php");
-        $data1 = file_get_contents($_FILES['myfile']['tmp_name']);
-        $sql="INSERT INTO `details`(`rec_id`, `face_photo`) VALUES ('[value-18]','[value-19]')";
-
+        if(isset($_POST['myfile'])){ echo($_POST['myfile']);
+        move_uploaded_file($_FILES['myfile']['tmp_name'], "userupolads/document" . $_FILES['myfile']['name']);
+        $file=$_FILES["myfile"]["name"];
+        
+       // $data1 = file_get_contents($_FILES['myfile']['tmp_name']);
+        $sql="INSERT INTO `details`(`rec_id`, `face_photo`) VALUES ('888','$file')";
+        if($con->query($sql)===TRUE){
+            echo("INSERTED to details");
+        }else echo("Fail Again!");
+    }else echo("Truely not recognised");
     }
     ?>
 </head>
 <body>
-    <form action="" method="post">
+    <form method="post" enctype="multipart/form-data">
     <div class="col-12">
         <label for="aadhar">Upload Aadhar Card:
             <input type="file" name="myfile" id="myfile" required>
