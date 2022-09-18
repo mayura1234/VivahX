@@ -22,7 +22,24 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         $query2 = "SELECT phone FROM details where phone='$phone'";
         $runquery2=$con->query($query2);
         if(mysqli_num_rows($runquery2) == 0){
-            if(true){       //jataka
+            if(($_FILES['fphoto']['size'] > 0)&&($_FILES['bphoto']['size'] > 0)&&($_FILES['aadhar']['size'] > 0)){       
+                $target_dir = "userupolads/document/";
+                $file_name1 = $_FILES['fphoto']['name'];
+                $file_tmp1 = $_FILES['fphoto']['tmp_name'];
+                $file_name2 = $_FILES['bphoto']['name'];
+                $file_tmp2 = $_FILES['bphoto']['tmp_name'];
+                $file_name3 = $_FILES['aadhar']['name'];
+                $file_tmp3 = $_FILES['aadhar']['tmp_name'];
+                if (move_uploaded_file($file_tmp1, $target_dir.$file_name1)) {
+                echo ("<h1>File1 Upload Success</h1>");
+                if (move_uploaded_file($file_tmp2, $target_dir.$file_name2)) {
+                    echo "<h1>File2 Upload Success</h1>";
+                    if (move_uploaded_file($file_tmp3, $target_dir.$file_name3)) {
+                        echo "<h1>aadhar Upload Success</h1>";
+                        }
+                    }
+                }
+                
                 $recid= random_num(4);
                 $fname=$_POST['fname'];
                 $mname=$_POST['mname'];
@@ -238,7 +255,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                 <div class="row justify-content-center">
                     <div class="col-4 col-md-4 ">
                         <label for="fphoto">Face Photo: &nbsp;
-                            <input type="file" id="fphoto" name="fphoto" accept="image/*">
+                            <input type="file" name="fphoto" >
                         </label>
                     </div>
                     <div class="col-4 col-md-4 ">
