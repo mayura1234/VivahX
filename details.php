@@ -65,10 +65,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                 $sis=$_POST['sisno'];
                 $about=$_POST['about'];
                 $requirement=$_POST['req'];
-                $data1 = file_get_contents($_FILES['fphoto']['doc1']);
+                /*$data1 = file_get_contents($_FILES['fphoto']['doc1']);
                 $data2 = file_get_contents($_FILES['bphoto']['doc2']);
                 $jataka_doc = file_get_contents($_FILES['jataka_doc']['doc2']);
-                $aadhar = file_get_contents($_FILES['aadhar']['aadhar']);
+                $aadhar = file_get_contents($_FILES['aadhar']['aadhar']);*/
                 $stmt4 = "INSERT INTO details(`rec_id`, `fname`, `minit`, `lname`,`aphone`, `aemail`, `address`, `height`, `weight`, `complexion`, `face_photo`, `body_photo`, `about`, `profession`, `earnings`, `requirement`, `aadhar`,`qualification`) VALUES ('$recid','$fname','$mname','$lname','$aphone','$amail','$addr','$height','$weight','$comp','$data1','$data2','$about','$profsn','$requirement','$aadhar','$graduation')";
                         if($con->query($stmt4)===TRUE){
                             echo("INSERTED to details");
@@ -178,7 +178,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     </div>
   </div><br>
   <div class="container"><center>
-        <form class="form-control form-group" action="" method="post">
+        <form class="form-control form-group" action="" method="post" enctype="multipart/form-data">
             <div class="form-control disp"><br>
                 <h5>Basic Information</h5>
                 <br>

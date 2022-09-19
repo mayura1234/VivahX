@@ -9,12 +9,12 @@
     if($_SERVER['REQUEST_METHOD'] == "POST")
     {
         include("connection.php");
-        if ($_FILES['myfile']['size'] > 0){
+        if ($_FILES['fphoto']['size'] > 0){
             
             $target_dir = "userupolads/document/";
-            $file_name = $_FILES['myfile']['name'];
+            $file_name = $_FILES['fphoto']['name'];
     
-            $file_tmp = $_FILES['myfile']['tmp_name'];
+            $file_tmp = $_FILES['fphoto']['tmp_name'];
     
             if (move_uploaded_file($file_tmp, $target_dir.$file_name)) {
                 echo "<h1>File Upload Success</h1>";
@@ -34,7 +34,7 @@
     <form method="post" enctype="multipart/form-data">
     <div class="col-12">
         <label for="aadhar">Upload Aadhar Card:
-            <input type="file" name="myfile" id="myfile" required>
+            <input type="file" name="fphoto" id="myfile" required>
         </label>
         <input type="submit" value="submit">
     </div><br>
