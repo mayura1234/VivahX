@@ -7,18 +7,24 @@ include("functions.php");
 $query1 = "SELECT face_photo FROM details WHERE rec_id='$user_name'";
     $runquery1=$con->query($query1);
 */
+
+$query1 = "SELECT rec_id FROM user WHERE uname='$user_name'";
+$runquery1=$con->query($query1);
+if(mysqli_num_rows($runquery1) != 0){
+    $row1=mysqli_fetch_assoc($runquery1);
+    $rec_id=$row1['rec_id'];
+    $email=$row1['email'];
+    
+}else{echo("No rows?");}
+
+
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
-    $user_name='kes2';
-    $phone=$_POST['phone'];
-    $email="hey@1";
-    $query1 = "SELECT rec_id FROM user WHERE uname='$user_name'";
-    $runquery1=$con->query($query1);
-    
-   // echo $runquery;
-    if(mysqli_num_rows($runquery1) != 0){
-        $row1=mysqli_fetch_assoc($runquery1);
-        $rec_id=$row1["rec_id"];
+    $user_name=$_SESSION['user_name'];
+    $user_id=$_SESSION['uid'];
+    $phone=$_POST['phone'];   
+    echo $phone;
+
         $query2 = "SELECT phone FROM details where phone='$phone'";
         $runquery2=$con->query($query2);
         if(mysqli_num_rows($runquery2) == 0){
@@ -69,7 +75,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                 $data2 = file_get_contents($_FILES['bphoto']['doc2']);
                 $jataka_doc = file_get_contents($_FILES['jataka_doc']['doc2']);
                 $aadhar = file_get_contents($_FILES['aadhar']['aadhar']);*/
-                $stmt4 = "INSERT INTO details(`rec_id`, `fname`, `minit`, `lname`,'phone,`aphone`, `aemail`, `address`, `height`, `weight`, `complexion`, `about`, `profession`, `earnings`, `requirement`,`qualification`) VALUES ('$recid','$fname','$mname','$lname','$phone','$aphone','$amail','$addr','$height','$weight','$comp','$about','$profsn','$salary','$requirement','$graduation')";
+                $stmt4 = "INSERT INTO details(`rec_id`, `fname`, `minit`, `lname`,phone,`aphone`, `aemail`, `address`, `height`, `weight`, `complexion`, `about`, `profession`, `earnings`, `requirement`,`qualification`) VALUES ('$recid','$fname','$mname','$lname','$phone','$aphone','$amail','$addr','$height','$weight','$comp','$about','$profsn','$salary','$requirement','$graduation')";
                         if($con->query($stmt4)===TRUE){
                             echo("INSERTED to details");
                             $jtk_id= random_num(4);
@@ -77,20 +83,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                             if($con->query($query4)===TRUE){
                                 echo("INSERTED to jataka");
                                 $fam_id= random_num(4);
-                                $query5="INSERT INTO `family`(`family_id`, `father`, `mother`, `fa_occu`, `mo_occu`, `bro_no`, `sis_no`) VALUES ('$fam_id','$fname','$mname ','$paoccu','$maoccu','$bro','$sis')";
+                                $query5="INSERT INTO `family`(`family_id`, `father`, `mother`, `fa_occu`, `mo_occu`, `bro_no`, `sis_no`,user_id) VALUES ('$fam_id','$fname','$mname ','$paoccu','$maoccu','$bro','$sis','$user_id')";
                                 if($con->query($query5)===TRUE){
                                     echo("INSERTED to family");
                         }else
                             echo("Some error");
             }
         }
-    }
-        }else
-            echo("Phone number already registered.."); 
+    }else
+        echo("Phone number already registered.."); 
+}
 
-    }else{echo("No rows?");}
-
-//}
 
 
 ?>
@@ -380,7 +383,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                     <h4>ACKNOLEDGEMENT</h4>
                 </div><br>
                 <div class="col-12">
-                    <input type="submit" value="Submit" class="btn btn-primary">
+                    <input type="submit" value="Submit" class="btn btn-primary" onclick="run();">
                 </div><br>
             </div>
             </div>
