@@ -7,14 +7,16 @@ include("functions.php");
 $query1 = "SELECT face_photo FROM details WHERE rec_id='$user_name'";
     $runquery1=$con->query($query1);
 */
-
-$query1 = "SELECT rec_id FROM user WHERE uname='$user_name'";
+$user_name=$_SESSION['user_name'];
+$query1 = "SELECT details,email,rec_id FROM user WHERE uname='$user_name'";
 $runquery1=$con->query($query1);
 if(mysqli_num_rows($runquery1) != 0){
     $row1=mysqli_fetch_assoc($runquery1);
     $rec_id=$row1['rec_id'];
     $email=$row1['email'];
-    
+    if($row1['details']==1){
+        header("Location: waiting.html");
+    }
 }else{echo("No rows?");}
 
 
@@ -154,7 +156,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                               </ul>
                           </li>
                           <li class="scroll-to-section"><a href="index.html">Testimonials</a></li>
-                          <li><a href="#">Account</a></li> 
+                          <li><a href="#"><?php echo "$_SESSION[user_name]";?></a></li> 
                       </ul>        
                       <a class='menu-trigger'>
                           <span>Menu</span>
