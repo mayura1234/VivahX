@@ -23,6 +23,13 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
 
   </head>
+  <?php
+    include("connection.php");
+    include("functions.php");
+
+    $user_data = check_login($con);
+  
+  ?>
 
 <body>
 
@@ -52,7 +59,7 @@
                               </ul>
                           </li>
                           <li class="scroll-to-section"><a href="#testimonials">Testimonials</a></li>
-                          <li><a href="signup.php">Create Account</a></li> 
+                          <li><a href="signup.php">Hey <?php echo  $_SESSION['user_name']?></a></li> 
                       </ul>        
                       <a class='menu-trigger'>
                           <span>Menu</span>

@@ -2,13 +2,14 @@
 session_start();
 
 include("connection.php");
+include("functions.php");
 
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
       $user_name=($_POST['username']);
       $passwd=($_POST['password']);
 
-      $query = "SELECT uname FROM user WHERE uname='$user_name' and password='$passwd' limit 1";
+      $query = "SELECT validate,uname,user_id FROM user WHERE uname='$user_name' and password='$passwd' limit 1";
      
      $result=mysqli_query($con,$query);
      if(mysqli_num_rows($result)!=1){
@@ -17,12 +18,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
      } else{
         echo "Record FOund!";
         $_SESSION['user_name']=$user_name;
-        $_SESSION['password']=$passwd;
+        $_SESSION['uid']=$result['user_id'];
+        if($result['validate']==0)
+            header("Location: details.php");
+        else
+            header("Location: index.php");
      }
 
  }
-
-
 
 ?>
 

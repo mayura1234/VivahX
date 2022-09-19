@@ -23,12 +23,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                     {
                         $uid=random_num(4);
                         $recid=random_num(4);
-                        $
-                        $stmt = "insert into user (user_id,uname,password,acnt_type,email,rec_id) values ('$uid','$user_name','$psw','$acnt_type','$mail','1111')";
-                        if($con->query($stmt)===TRUE)
-                            echo("INSERTED");
-                        else
-                            echo("Some error");
+                        $stmt2="insert into details (rec_id) values ('$recid')";
+                        if($con->query($stmt2)===TRUE){
+                            $stmt = "insert into user (user_id,uname,password,acnt_type,email,rec_id) values ('$uid','$user_name','$psw','$acnt_type','$mail','$recid')";
+                            if($con->query($stmt)===TRUE){
+                                echo("INSERTED");
+                                header("Location: login.php");
+                            }else
+                                echo("Some error");
+                        }else{echo"Error in details linkage..";}
                     }
                     else
                         echo("Use some other mail id");
