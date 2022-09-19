@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2022 at 01:24 PM
+-- Generation Time: Sep 19, 2022 at 06:23 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -54,9 +54,8 @@ CREATE TABLE `details` (
 --
 
 INSERT INTO `details` (`rec_id`, `fname`, `minit`, `lname`, `phone`, `aphone`, `aemail`, `address`, `height`, `weight`, `complexion`, `face_photo`, `body_photo`, `about`, `profession`, `earnings`, `requirement`, `aadhar`, `qualification`) VALUES
-('2222', 'keshava', '', 'murali', 99999, 0, '', '', 0.00, 0.00, '', '', '', '', '', 0.00, '', '', NULL),
-('55', '', '', '', 69, 0, '', '', 0.00, 0.00, '', '', '', '', '', 0.00, '', '', NULL),
-('555', '', '', '', 999, 0, '', '', 0.00, 0.00, '', '', '', '', '', 0.00, '', '', NULL);
+('1383', '', '', '', 0, 0, '', '', 0.00, 0.00, '', '', '', '', '', 0.00, '', '', NULL),
+('4987', '', '', '', 0, 0, '', '', 0.00, 0.00, '', '', '', '', '', 0.00, '', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -71,7 +70,8 @@ CREATE TABLE `family` (
   `fa_occu` varchar(50) NOT NULL,
   `mo_occu` varchar(50) NOT NULL,
   `bro_no` int(2) NOT NULL,
-  `sis_no` int(2) NOT NULL
+  `sis_no` int(2) NOT NULL,
+  `user_id` char(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -124,12 +124,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `uname`, `password`, `acnt_type`, `validate`, `rec_id`, `email`) VALUES
-('0162', 'jajnj', 'haa123', 'bg', 0, '1111', 'janj@j.c'),
-('1101', 'Guru', 'pass', 'ma', 0, '1111', 'gururaj@gmail.com'),
-('1102', 'hi', 'may123@', 'on', 0, '1111', 'hey@1.com'),
-('2211', 'kes2', '123', 'as', 0, '1223', 'kes2@k.c'),
-('2222', 'kes', '123', 'a', 0, '1112', 'ke@c.c'),
-('3035', 'c', 'hihi44', 'bg', 0, '1111', 'c@c.com');
+('9206', 'mru', 'mru123', 'b', 0, '4987', 'mru@123.co'),
+('9905', 'kesh', 'kes123', 'bg', 0, '1383', 'kesh@abc.co');
 
 --
 -- Indexes for dumped tables
@@ -139,14 +135,14 @@ INSERT INTO `user` (`user_id`, `uname`, `password`, `acnt_type`, `validate`, `re
 -- Indexes for table `details`
 --
 ALTER TABLE `details`
-  ADD PRIMARY KEY (`rec_id`),
-  ADD UNIQUE KEY `phone` (`phone`);
+  ADD PRIMARY KEY (`rec_id`);
 
 --
 -- Indexes for table `family`
 --
 ALTER TABLE `family`
-  ADD PRIMARY KEY (`family_id`);
+  ADD PRIMARY KEY (`family_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `feedback`
@@ -176,6 +172,12 @@ ALTER TABLE `user`
 --
 
 --
+-- Constraints for table `family`
+--
+ALTER TABLE `family`
+  ADD CONSTRAINT `family_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+
+--
 -- Constraints for table `feedback`
 --
 ALTER TABLE `feedback`
@@ -186,6 +188,12 @@ ALTER TABLE `feedback`
 --
 ALTER TABLE `jaataka`
   ADD CONSTRAINT `JAATAKA` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`rec_id`) REFERENCES `details` (`rec_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
