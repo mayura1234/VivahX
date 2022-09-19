@@ -22,6 +22,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                     if(mysqli_num_rows($runquery2)==0)
                     {
                         $uid=random_num(4);
+                        $recid=random_num(4);
+                        $
                         $stmt = "insert into user (user_id,uname,password,acnt_type,email,rec_id) values ('$uid','$user_name','$psw','$acnt_type','$mail','1111')";
                         if($con->query($stmt)===TRUE)
                             echo("INSERTED");
@@ -69,18 +71,18 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 <body>
 
 
-  <!-- ***** Header Area Start ***** -->
+  <!-- ***** Header Area Start ***** 
   <header class="header-area header-sticky bg-success">
       <div class="container">
           <div class="row">
             <div class="col-12" class="col-sm-6">
                   <nav class="main-nav">
-                      <!-- ***** Logo Start ***** -->
+                      <!-- ***** Logo Start ***** 
                       <a href="index.html" class="logo">
                           <img src="assets/images/logo.png" alt="">
                       </a>
                       <!-- ***** Logo End ***** -->
-                      <!-- ***** Menu Start ***** -->
+                      <!-- ***** Menu Start ***** 
                       <ul class="nav">
                           <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
                           <li class="scroll-to-section"><a href="#services">Services</a></li>
@@ -99,7 +101,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                       <a class='menu-trigger'>
                           <span>Menu</span>
                       </a>
-                      <!-- ***** Menu End ***** -->
+                      <!-- ***** Menu End ***** 
                   </nav>
               </div>
           </div>

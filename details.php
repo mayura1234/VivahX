@@ -10,7 +10,7 @@ $query1 = "SELECT face_photo FROM details WHERE rec_id='$user_name'";
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
     $user_name='kes2';
-    $phone=55666;
+    $phone=$_POST['phone'];
     $email="hey@1";
     $query1 = "SELECT rec_id FROM user WHERE uname='$user_name'";
     $runquery1=$con->query($query1);
@@ -22,7 +22,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         $query2 = "SELECT phone FROM details where phone='$phone'";
         $runquery2=$con->query($query2);
         if(mysqli_num_rows($runquery2) == 0){
-            if(($_FILES['fphoto']['size'] > 0)&&($_FILES['bphoto']['size'] > 0)&&($_FILES['aadhar']['size'] > 0)){       
+          /*  if(($_FILES['fphoto']['size'] > 0)&&($_FILES['bphoto']['size'] > 0)&&($_FILES['aadhar']['size'] > 0)){       
                 $target_dir = "userupolads/document/";
                 $file_name1 = $_FILES['fphoto']['name'];
                 $file_tmp1 = $_FILES['fphoto']['tmp_name'];
@@ -38,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                         echo "<h1>aadhar Upload Success</h1>";
                         }
                     }
-                }
+                }*/
                 
                 $recid= random_num(4);
                 $fname=$_POST['fname'];
@@ -69,11 +69,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                 $data2 = file_get_contents($_FILES['bphoto']['doc2']);
                 $jataka_doc = file_get_contents($_FILES['jataka_doc']['doc2']);
                 $aadhar = file_get_contents($_FILES['aadhar']['aadhar']);*/
-                $stmt4 = "INSERT INTO details(`rec_id`, `fname`, `minit`, `lname`,`aphone`, `aemail`, `address`, `height`, `weight`, `complexion`, `face_photo`, `body_photo`, `about`, `profession`, `earnings`, `requirement`, `aadhar`,`qualification`) VALUES ('$recid','$fname','$mname','$lname','$aphone','$amail','$addr','$height','$weight','$comp','$data1','$data2','$about','$profsn','$requirement','$aadhar','$graduation')";
+                $stmt4 = "INSERT INTO details(`rec_id`, `fname`, `minit`, `lname`,'phone,`aphone`, `aemail`, `address`, `height`, `weight`, `complexion`, `about`, `profession`, `earnings`, `requirement`,`qualification`) VALUES ('$recid','$fname','$mname','$lname','$phone','$aphone','$amail','$addr','$height','$weight','$comp','$about','$profsn','$salary','$requirement','$graduation')";
                         if($con->query($stmt4)===TRUE){
                             echo("INSERTED to details");
                             $jtk_id= random_num(4);
-                            $query4="INSERT INTO `jaataka`(`jtk_id`, `gotra`, `DOB`, `paada`, `nakshatra`, `user_id`, `document`) VALUES ('$jtk_id','$gotra','$dob','$paada','$nakshatra','$user_id','$jataka_doc')";
+                            $query4="INSERT INTO `jaataka`(`jtk_id`, `gotra`, `DOB`, `paada`, `nakshatra`, `user_id`) VALUES ('$jtk_id','$gotra','$dob','$paada','$nakshatra','$user_id')";
                             if($con->query($query4)===TRUE){
                                 echo("INSERTED to jataka");
                                 $fam_id= random_num(4);
@@ -90,7 +90,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 
     }else{echo("No rows?");}
 
-}
+//}
 
 
 ?>
@@ -370,7 +370,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                 <br>
                 <div class="col-12">
                     <label for="aadhar">Upload Aadhar Card:
-                        <input type="file" name="aadhar" id="aadhar" required>
+                        <input type="file" name="aadhar" id="aadhar">
                     </label>
                 </div><br>
             </div><br>

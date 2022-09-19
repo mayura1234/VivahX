@@ -13,12 +13,12 @@
             
             $target_dir = "userupolads/document/";
             $file_name = $_FILES['fphoto']['name'];
-    
+            $filestore=file_get_contents($_FILES['fphoto']['tmp_name']);
             $file_tmp = $_FILES['fphoto']['tmp_name'];
     
             if (move_uploaded_file($file_tmp, $target_dir.$file_name)) {
                 echo "<h1>File Upload Success</h1>";
-                //$sql="INSERT INTO `details`(`rec_id`, `face_photo`) VALUES ('888','$file_name')";
+                $sql="INSERT INTO `details`(`rec_id`, `face_photo`) VALUES ('899','$file_name')";
                 if($con->query($sql)===TRUE){
                     echo("INSERTED to details");
                 }else echo("Fail Again!");
