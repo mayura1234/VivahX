@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2022 at 06:23 PM
+-- Generation Time: Sep 19, 2022 at 06:36 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -124,6 +124,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `uname`, `password`, `acnt_type`, `validate`, `rec_id`, `email`) VALUES
+('1122', 'keshava', 'kes123', 'a', 1, NULL, 'keshava@gmail.com'),
+('5555', 'Purushothama', 'puru123', 'as', 1, NULL, 'puru@gmail.com'),
 ('9206', 'mru', 'mru123', 'b', 0, '4987', 'mru@123.co'),
 ('9905', 'kesh', 'kes123', 'bg', 0, '1383', 'kesh@abc.co');
 
