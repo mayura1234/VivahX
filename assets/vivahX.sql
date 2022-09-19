@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2022 at 04:14 PM
+-- Generation Time: Sep 19, 2022 at 01:24 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -54,7 +54,9 @@ CREATE TABLE `details` (
 --
 
 INSERT INTO `details` (`rec_id`, `fname`, `minit`, `lname`, `phone`, `aphone`, `aemail`, `address`, `height`, `weight`, `complexion`, `face_photo`, `body_photo`, `about`, `profession`, `earnings`, `requirement`, `aadhar`, `qualification`) VALUES
-('2222', 'keshava', '', 'murali', 99999, 0, '', '', 0.00, 0.00, '', '', '', '', '', 0.00, '', '', NULL);
+('2222', 'keshava', '', 'murali', 99999, 0, '', '', 0.00, 0.00, '', '', '', '', '', 0.00, '', '', NULL),
+('55', '', '', '', 69, 0, '', '', 0.00, 0.00, '', '', '', '', '', 0.00, '', '', NULL),
+('555', '', '', '', 999, 0, '', '', 0.00, 0.00, '', '', '', '', '', 0.00, '', '', NULL);
 
 -- --------------------------------------------------------
 
