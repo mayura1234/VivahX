@@ -9,20 +9,35 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
       $user_name=($_POST['username']);
       $passwd=($_POST['password']);
 
-      $query = "SELECT validate,uname,user_id FROM user WHERE uname='$user_name' and password='$passwd' limit 1";
+      $query = "SELECT validate,uname,user_id,acnt_type FROM user WHERE uname='$user_name' and password='$passwd' limit 1";
      
      $result=mysqli_query($con,$query);
      if(mysqli_num_rows($result)!=1){
          echo "Invalid Credentials....";
 
-     } else{
+     }else{
         echo "Record FOund!";
+        $row = $result->fetch_assoc();
         $_SESSION['user_name']=$user_name;
-        $_SESSION['uid']=$result['user_id'];
-        if($result['validate']==0)
-            header("Location: details.php");
-        else
-            header("Location: index.php");
+        $_SESSION['uid']=$row['user_id'];
+
+        switch($row['acnt_type']){
+
+        case 'a': 
+            header("Location: admin.html");
+            break;
+
+        case 'as':
+            header("Location: astro_home.html");
+            break;
+
+        case 'b':
+        case 'bg':
+            if($row['validate']==0)
+                header("Location: details.php");
+            else
+                header("Location: index.php");
+        }
      }
  }
 
