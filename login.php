@@ -2,41 +2,45 @@
 session_start();
 
 include("connection.php");
+include("functions.php");
 
-function dbquery2(){
-// if(isset(['username'])){
-    
-//      $uname=$_POST['username'];
-//      $password=$_POST['password'];
-
-//      $sql1="select *from user where uname='".$uname"' and password='".$password"' limit 1";
-       
-//        $result="mysql_query(sql1)"
-  
-    
-      $user_name="";
-      $passwd"";
-
+if($_SERVER['REQUEST_METHOD'] == "POST")
+{
       $user_name=($_POST['username']);
       $passwd=($_POST['password']);
 
-      $query = "SELECT *FROM user WHERE uname='$user_name' and password='$passwd' limit 1";
+      $query = "SELECT validate,uname,user_id,acnt_type FROM user WHERE uname='$user_name' and password='$passwd' limit 1";
      
-    //   password"";
-    //  $passwd=($_POST['password']);
-     // $query2 = "SELECT password FROM user WHERE password='$passwd'";
-     
-     $result=mysql_query($query)
-     if(mysql_num_rows($result)!==1){
+     $result=mysqli_query($con,$query);
+     if(mysqli_num_rows($result)!=1){
          echo "Invalid Credentials....";
-         exit();
-     } 
-     //else
-    // echo "Invalid credentials...!";
-//  }
+
+     }else{
+        echo "Record FOund!";
+        $row = $result->fetch_assoc();
+        $_SESSION['user_name']=$user_name;
+        $_SESSION['uid']=$row['user_id'];
+        //echo $_SESSION['uid'];
+        switch($row['acnt_type']){
+
+        case 'a': 
+            header("Location: admin.html");
+            break;
+
+        case 'as':
+            header("Location: astro_home.html");
+            break;
+
+        case 'b':
+        case 'bg':
+            if($row['validate']==0)
+                header("Location: details.php");
+           else
+
+                header("Location: index.php");
+        }
+     }
  }
-
-
 
 ?>
 
@@ -61,31 +65,21 @@ function dbquery2(){
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
-     <script>
-        function btnprs1(){
-            var usr=document.getElementById("user").value;
-            var psw=document.getElementById("pass").value;
-            if(usr==NULL || psw==NULL){
-                document.getElementById("error_msg").innerHTML="<h6 class='text-danger'>Enter all credentials</h6><br>";
-            }else{
-             <?php      dbquery2();          ?>  
-            }
-        }
-      </script> 
+
 </head>
 <body>
-    <!-- ***** Header Area Start ***** -->
+    <!-- ***** Header Area Start ***** 
   <header class="header-area header-sticky bg-success">
     <div class="container">
         <div class="row">
             <div class="col-12" class="col-sm-6">
                 <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
+                    <!-- ***** Logo Start ***** -
                     <a href="index.html" class="logo">
                         <img src="assets/images/logo.png" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
-                    <!-- ***** Menu Start ***** -->
+                    <!-- ***** Menu Start ***** -
                     <ul class="nav">
                         <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
                         <li class="scroll-to-section"><a href="#services">Services</a></li>
@@ -104,7 +98,7 @@ function dbquery2(){
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>
-                    <!-- ***** Menu End ***** -->
+                    <!-- ***** Menu End ***** 
                 </nav>
             </div>
         </div>
@@ -127,20 +121,10 @@ function dbquery2(){
           <input type="password" id="pass" name="password" class="form-control" required >
       </label>
     </div>
-      <!-- <br><br> -->
-       <!-- <label for="reppass">Repeat Password:
-          <input type="password" name="" id=""required>
-      </label><br><br>
-      <label for="email">Email:
-          <input type="email" name="" id=""required>
-      </label><br><br>
-      <label for="usertype">Gender:<br>
-          <input type="radio" name="gender" id="">Male<br>
-          <input type="radio" name="gender" id="">Female
-      </label><br><br>     -->
+
       <div class="col-6">
         <input type="reset" value="Reset" class="btn btn-danger"> 
-      <input type="submit" value="Submit" class="btn btn-success" onclick="btnprs1();" >
+      <input type="submit" value="Submit" class="btn btn-success">
      
     </div>
   </form>
