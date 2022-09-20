@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         $row = $result->fetch_assoc();
         $_SESSION['user_name']=$user_name;
         $_SESSION['uid']=$row['user_id'];
-
+        //echo $_SESSION['uid'];
         switch($row['acnt_type']){
 
         case 'a': 
@@ -35,7 +35,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         case 'bg':
             if($row['validate']==0)
                 header("Location: details.php");
-            else
+           else
+
                 header("Location: index.php");
         }
      }
