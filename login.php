@@ -12,7 +12,8 @@ function dbquery2(){
 //      $sql1="select *from user where uname='".$uname"' and password='".$password"' limit 1";
        
 //        $result="mysql_query(sql1)"
-  
+if($_SERVER['REQUEST_METHOD'] == "POST")
+{
     
       $user_name="";
       $passwd"";
@@ -20,14 +21,14 @@ function dbquery2(){
       $user_name=($_POST['username']);
       $passwd=($_POST['password']);
 
-      $query = "SELECT *FROM user WHERE uname='$user_name' and password='$passwd' limit 1";
+      $query = "SELECT *FROM user WHERE uname='$user_name' and password='$passwd'";
      
     //   password"";
     //  $passwd=($_POST['password']);
      // $query2 = "SELECT password FROM user WHERE password='$passwd'";
      
-     $result=mysql_query($query)
-     if(mysql_num_rows($result)!==1){
+     $result=mysqli_query($query)
+     if(mysqli_num_rows($result)!==1){
          echo "Invalid Credentials....";
          exit();
      } 
@@ -35,6 +36,7 @@ function dbquery2(){
     // echo "Invalid credentials...!";
 //  }
  }
+}
 
 
 
@@ -115,7 +117,7 @@ function dbquery2(){
   <center><br><br><br><br><br><br>
   <h1> Login Form </h1>
   <br>
-  <form class="from-group" method="post">
+  <form class="from-group" method="POST">
     <div class="col-6" class="col-sm-12">
       <label for="username" class="form-label">User Name:
           <input type="text" id="user" class="form-control"required name="username" >
