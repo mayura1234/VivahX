@@ -26,6 +26,7 @@
   <?php
     include("connection.php");
     include("functions.php");
+    session_start();
 
     $user_data = check_login($con);
   
@@ -59,7 +60,7 @@
                               </ul>
                           </li>
                           <li class="scroll-to-section"><a href="#testimonials">Testimonials</a></li>
-                          <li><a href="signup.php">Hey <?php echo  $_SESSION['user_name']?></a></li> 
+                          <li><a href="logout.php"  >Hey <?php echo  $_SESSION['user_name']?> </a></li> 
                       </ul>        
                       <a class='menu-trigger'>
                           <span>Menu</span>
