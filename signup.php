@@ -2,27 +2,49 @@
 session_start();
 
 include("connection.php");
-/*
+include("functions.php");
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
+    $user_name=($_POST['username']);
     $psw=($_POST['password']);
     $rpsw=($_POST['reppass']);
-    $mail=($_POST['mail']);
+    $mail=($_POST['email']);
     $acnt_type=($_POST['gender']);
-}*/
 
-function dbquery1(){
-    $user_name="";
-    $user_name=($_POST['username']);
     $query = "SELECT uname FROM user WHERE uname='$user_name'";
-    //$runquery=mysqli_query($con, $query);
-    //if(mysqli_num_rows($runquery) != 0)
-    {
-        echo("Username already exists");
-    }
+    $query2= "SELECT email FROM user WHERE email='$mail'";
+    $runquery=$con->query($query);
+    $runquery2=$con->query($query2);
+    if(mysqli_num_rows($runquery) == 0)
+        if($psw==$rpsw)
+            if(strlen($psw)>5)
+                if( preg_match('([a-zA-Z].*[0-9]|[0-9].*[a-zA-Z])', $psw) )
+                    if(mysqli_num_rows($runquery2)==0)
+                    {
+                        $uid=random_num(4);
+                        $recid=random_num(4);
+                        $stmt2="insert into details (rec_id) values ('$recid')";
+                        if($con->query($stmt2)===TRUE){
+                            $stmt = "insert into user (user_id,uname,password,acnt_type,email,rec_id) values ('$uid','$user_name','$psw','$acnt_type','$mail','$recid')";
+                            if($con->query($stmt)===TRUE){
+                                echo("INSERTED");
+                                header("Location: login.php");
+                            }else
+                                echo("Some error");
+                        }else{echo"Error in details linkage..";}
+                    }
+                    else
+                        echo("Use some other mail id");
+                else    
+                    echo("Passwords must be alpha numeric");
+            else
+                echo("passowrd must be more than 5 charcters");
+        else   
+            echo("Passwords does not match");
+    else
+        echo("user name exists");
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,36 +68,24 @@ function dbquery1(){
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
-    <script>
-        function btnprs(){
-            var psw=document.getElementById("pw").value;
-            var rpsw=document.getElementById("rpw").value;
-            if(psw!=rpsw){
-                document.getElementById("error_msg").innerHTML="<h6 class='text-danger'>Passwords does not match!</h6><br>";
-            }else{
-                <?php      dbquery1();          ?>
-            }
-        }
-      </script>
+
   </head>
- 
-    
 
 <body>
 
 
-  <!-- ***** Header Area Start ***** -->
+  <!-- ***** Header Area Start ***** 
   <header class="header-area header-sticky bg-success">
       <div class="container">
           <div class="row">
-              <div class="col-12">
+            <div class="col-12" class="col-sm-6">
                   <nav class="main-nav">
-                      <!-- ***** Logo Start ***** -->
+                      <!-- ***** Logo Start ***** 
                       <a href="index.html" class="logo">
                           <img src="assets/images/logo.png" alt="">
                       </a>
                       <!-- ***** Logo End ***** -->
-                      <!-- ***** Menu Start ***** -->
+                      <!-- ***** Menu Start ***** 
                       <ul class="nav">
                           <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
                           <li class="scroll-to-section"><a href="#services">Services</a></li>
@@ -94,40 +104,60 @@ function dbquery1(){
                       <a class='menu-trigger'>
                           <span>Menu</span>
                       </a>
-                      <!-- ***** Menu End ***** -->
+                      <!-- ***** Menu End ***** 
                   </nav>
               </div>
           </div>
       </div>
   </header>
   <!-- ***** Header Area End ***** -->
-  <div class="container">
-    <center><br><br><br><br><br><br>
+  <center>
+  <div class="page-container" class="col-6" class="col-sm-12">
+    <!-- <div class="col-6" class="col-sm-12"> -->
+        
+        <br><br><br><br><br><br> 
     <h1> Registration Form </h1>
     <br>
-    <form class="from-group" method="post">
-        <label for="username">User Name:
-            <input type="text" required name="username" id="un">
-        </label><br><br>
-        <label for="email">Email:
-            <input type="email" name="email" id="mail">
-        </label><br><br>
-        <label for="password">Password:
-            <input type="password" name="password" id="pw">
-        </label><br><br>
-        <label for="reppass">Repeat Password:
-            <input type="password" name="reppass" id="rpw">
-        </label><br><br>
-        <label for="gender">Gender:<br>
-            <input type="radio" name="gender" id="bg">Male<br>
-            <input type="radio" name="gender" id="b">Female
-        </label><br><br>   
-        <span id="error_msg"></span> 
-        <input type="button" value="Submit" onclick="btnprs();">
-        <input type="reset" value="Reset">
-    </form>
-    </center>
+    <form class="from-group"  method="post" action="#">
+        <div class="col-6">
+        <label for="username" class="form-label">User Name:
+            <input type="text" class="form-control"  name="username" id="un" required>
+        </div>
+        <div class="col-6">
+            <label for="email" class="form-label">Email:
+                <input type="email" class="form-control" name="email" id="mail" required>
+            </label>
+        </div>
+        </label>
+        <!-- <br><br> -->
+        <div class="col-6">
+        <label for="password" class="form-label">Password:
+            <input type="password" class="form-control"  name="password" id="pw" required>
+        </label>
+        <!-- <br><br> -->
     </div>
-    </body>
-    </html>
-    
+    <div class="col-6">
+         <label for="reppass" class="form-label">Repeat Password:
+            <input type="password"class="form-control" name="reppass" id="rpw" required>
+        </label>
+    </div>
+        <!-- <br><br> -->
+   
+        <!-- <br><br> -->
+        <div class="col-6">
+        <label for="gender" class="form-label">Gender:<br>
+            <input type="radio" name="gender" id="bg" value="bg">Male<br>
+            <input type="radio" name="gender" id="b" value="b">Female
+        </label>
+    </div>
+        <!-- <br><br>     -->
+        <span id="error_msg"></span> 
+        <input type="reset" value="Reset" class="btn btn-danger"> 
+        <input type="submit" class="btn btn-success"value="Submit">
+       
+    </form>
+    </center> 
+    </div>
+</div>
+</body>
+</html>
